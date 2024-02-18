@@ -28,7 +28,7 @@ public class FamilyRelationship {
 
         @ManyToOne
         @JoinColumn(name = "resident_serial_number")
-        private Resident resident;
+        private Resident baseResidentSerialNumber;
     }
 
 }

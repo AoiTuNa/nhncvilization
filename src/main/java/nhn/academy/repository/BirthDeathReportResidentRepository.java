@@ -13,11 +13,17 @@ public interface BirthDeathReportResidentRepository extends JpaRepository<BirthD
 
     List<BirthDeathReportResident> findByResident(Resident resident);
 
-    @Query("SELECT bdr FROM BirthDeathReportResident bdr WHERE bdr.resident = :serialNumber")
-    List<BirthDeathReportResidentDto.BirthReportResidentDto> findBirthDetailsByResidentSerialNumber(Integer serialNumber);
+    @Query("SELECT bdr FROM BirthDeathReportResident bdr WHERE bdr.pk.reportResidentSerialNumber = :serialNumber")
+    List<BirthDeathReportResidentDto.BirthReportResidentDto> findBirthDetailsByReportResidentBySerialNumber(Integer serialNumber);
 
-    @Query("SELECT bdr FROM BirthDeathReportResident bdr WHERE bdr.resident = :serialNumber")
-    List<BirthDeathReportResidentDto.DeathReportResidentDto> findDeathDetailsByResidentSerialNumber(Integer serialNumber);
+    @Query("SELECT bdr FROM BirthDeathReportResident bdr WHERE bdr.pk.reportResidentSerialNumber = :serialNumber")
+    List<BirthDeathReportResidentDto.DeathReportResidentDto> findDeathDetailsByReportResidentBySerialNumber(Integer serialNumber);
 
+
+    @Query("SELECT bdr FROM BirthDeathReportResident bdr WHERE bdr.resident = :resident")
+    List<ResidentDto.ResidentBirthDto> findBirthDetailsByTargetResidentByResident(Resident resident);
+
+    @Query("SELECT bdr FROM BirthDeathReportResident bdr WHERE bdr.resident = :resident")
+    List<ResidentDto.ResidentDeathDto> findDeathDetailsByTargetResidentByResident(Resident resident);
 
 }

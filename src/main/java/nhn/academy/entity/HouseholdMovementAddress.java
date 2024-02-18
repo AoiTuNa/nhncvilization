@@ -29,8 +29,8 @@ public class HouseholdMovementAddress {
     @Setter
     @Embeddable
     public static class Pk implements Serializable{
-        @Column(name = "household_serial_number")
-        private LocalDateTime householdSerialNumber;
+        @Column(name = "household_movement_report_date")
+        private LocalDateTime houseMovementReportDate;
 
         @ManyToOne
         @JoinColumn(name = "household_serial_number")

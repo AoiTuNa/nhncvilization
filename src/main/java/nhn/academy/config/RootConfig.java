@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Controller;
 
 import javax.sql.DataSource;
+import java.sql.SQLException;
 
 @Configuration
 @ComponentScan(basePackageClasses = Base.class,
@@ -16,11 +17,14 @@ public class RootConfig {
     @Bean
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("org.h2.Driver");
-        dataSource.setUrl("jdbc:h2:~/spring-jpa;DATABASE_TO_UPPER=false;MODE=LEGACY;"
-                + "INIT=RUNSCRIPT FROM 'classpath:/script/schema.sql'");
-        dataSource.setUsername("sa");
-        dataSource.setPassword("");
+        try {
+            dataSource.setDriver(new com.mysql.cj.jdbc.Driver());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        dataSource.setUrl("jdbc:mysql://133.186.244.96:3306/nhn_academy_40");
+        dataSource.setUsername("nhn_academy_40");
+        dataSource.setPassword("J/_-W7)ZYB4URo0B");
 
         dataSource.setInitialSize(10);
         dataSource.setMaxTotal(10);

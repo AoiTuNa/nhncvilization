@@ -10,6 +10,4 @@ import java.util.List;
 public interface HouseholdRepository extends JpaRepository<Household,Integer> {
     List<Household> findByHouseholdSerialNumberLike(Integer householdSerialNumber);
 
-
-
 }

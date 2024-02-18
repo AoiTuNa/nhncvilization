@@ -13,13 +13,6 @@ import java.util.List;
 
 public interface ResidentRepository extends JpaRepository<Resident,Integer> {
 
-    List<Resident> findByResidentSerialNumber(Integer serialNumber);
-
-    @Query("SELECT r FROM Resident r WHERE r.residentSerialNumber = :serialNumber")
-    List<ResidentDto.ResidentBirthDto> findBirthDetailsByResidentSerialNumber(Integer serialNumber);
-
-    @Query("SELECT r FROM Resident r WHERE r.residentSerialNumber = :serialNumber")
-    List<ResidentDto.ResidentDeathDto> findDeathDetailsByResidentSerialNumber(Integer serialNumber);
-
     Page<ResidentNameOnly> getAllBy(Pageable pageable);
+
 }
